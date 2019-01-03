@@ -17,5 +17,10 @@ namespace SongTest.Controllers
             List<Song> SongList = db_Object.Songs.ToList();
             return (View(SongList));
         }
+
+        public ActionResult CreateSong()
+        {
+
+        }
     }
 }
