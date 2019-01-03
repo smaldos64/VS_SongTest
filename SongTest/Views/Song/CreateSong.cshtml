@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Genre>
+
+@{
+    ViewBag.Title = "CreateSong";
+}
+
+<h2>Create Song</h2>
+
+<form method="post" action="/Song/CreateSong" enctype="multipart/form-data">
+    <div class="row">
+        <p>Teams</p>
+        <select name="GenreID">
+            @foreach (Genre Item in Model)
+            {
+                <option value="@Item.GenreID">@Item.GenreTitle</option>
+            }
+        </select>
+        <br />
+        <br />
+
+        <input id="txtSongTitle" name="SongTitle" type="text" class="form-control" required title="Husk at sang titel !!!" placeholder="Indtast Sang titel" />
+        <br />
+
+        <input id="btnSubmit" type="submit" value="Gem Sang" />
+    </div>
+</form>
+
+<br />
+@Html.ActionLink("Tilbage til forside", "Index", "Home")
+
