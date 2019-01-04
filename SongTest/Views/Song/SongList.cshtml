@@ -55,3 +55,46 @@
 
 </table>
 
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // ---------------------------------------------------------------------------------------
+            // Start på Paging
+            // ---------------------------------------------------------------------------------------
+            //$(".Song").AddPageComponentsDynamic(
+            //    {
+            //        Number_Of_Paging_Elements_On_Side: 3,
+            //        MaxNumberOfPagerPagesInPagerSlider: 4,
+            //        PagerClassName: "Song",
+            //        PagerStyleTable: true,
+            //        UsePagerElementOnSideSelector: true,
+            //        PagerStyleName: "Current_Highlight",
+            //    }
+            //);
+            // ---------------------------------------------------------------------------------------
+            // Slut på Paging
+            // ---------------------------------------------------------------------------------------
+
+            var $tableList = $('#SonglistTable');
+
+            $tableList.delegate('.divider', 'click', function () {
+                var SongID = $(this).closest("tr").attr('data-songid');
+                window.location = "/Song/SongDetails/" + SongID
+            });
+
+            $tableList.delegate('.edit-order', 'click', function () {
+                var SongID = $(this).closest("tr").attr('data-songid');
+                window.location = "/Song/EditSong/" + SongID
+            });
+
+            $tableList.delegate('.remove-order', 'click', function (e) {
+                if (!confirm($(this).closest('tr').find(".SongTitle").attr('data-confirm'))) {
+                    return;
+                }
+
+                var SongID = $(this).closest("tr").attr('data-songid');
+                window.location = "/Song/DeleteSong/" + SongID
+            });
+        });
+    </script>
+}

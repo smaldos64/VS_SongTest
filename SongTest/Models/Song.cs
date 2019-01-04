@@ -15,5 +15,11 @@ namespace SongTest.Models
 
         public int GenreID { get; set; }
         public virtual Genre Genre { get; set; }
+
+        //public virtual ICollection<Album> Albums { get; set; }
+
+        public virtual ICollection<Song_Album_Relation> Song_Album_Relations { get; set; }
+
+        public virtual ICollection<Playlist_Song_Relation> Playlist_Song_Relations { get; set; }
     }
 }

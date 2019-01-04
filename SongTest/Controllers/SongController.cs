@@ -48,5 +48,68 @@ namespace SongTest.Controllers
                 return (View());
             }
         }
+
+        public ActionResult SongDetails(int Id)
+        {
+            Song Song_Object = db_Object.Songs.Find(Id);
+
+            if (null != Song_Object)
+            {
+                return (View(Song_Object));
+            }
+            else
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
+        }
+
+        public ActionResult DeleteSong(int Id)
+        {
+            Song Song_Object = db_Object.Songs.Find(Id);
+
+            if (null != Song_Object)
+            {
+                db_Object.Songs.Remove(Song_Object);
+                db_Object.SaveChanges();
+            }
+            return (RedirectToAction("Songlist", "Song"));
+        }
+
+        public ActionResult EditSong(int Id)
+        {
+            Song Song_Object = db_Object.Songs.Find(Id);
+
+            if (null != Song_Object)
+            {
+                ViewBag.GenreList = db_Object.Genres.ToList();
+
+                return (View(Song_Object));
+            }
+            else
+            {
+                return (RedirectToAction("Songlist", "Song"));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditSong(Song Song_Object)
+        {
+            int NumberOfRecordsSaved = 0;
+
+            Song Song_ObjectSave = db_Object.Songs.Find(Song_Object.SongID);
+            Song_ObjectSave.GenreID = Song_Object.GenreID;
+            Song_ObjectSave.SongTitle = Song_Object.SongTitle;
+
+            NumberOfRecordsSaved = db_Object.SaveChanges();
+
+            if (NumberOfRecordsSaved > 0)
+            {
+                return (RedirectToAction("SongList", "Song"));
+            }
+            else
+            {
+                return (RedirectToAction("Index", "Home"));
+            }
+        }
     }
 }

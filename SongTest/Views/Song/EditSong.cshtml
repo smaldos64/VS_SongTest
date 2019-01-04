@@ -1,0 +1,32 @@
+﻿@model Song
+
+@{
+    ViewBag.Title = "EditSong";
+    List<Genre> GenreList = ViewBag.GenreList;
+}
+
+<h2>Edit Song</h2>
+
+<form method="post" action="/Song/EditSong" enctype="multipart/form-data">
+    <div class="row">
+        <p>Teams</p>
+        <select name="GenreID">
+            @foreach (Genre Item in GenreList)
+            {
+                <option value="@Item.GenreID" @Html.Raw(Model.GenreID == Item.GenreID ? "selected=\"selected\"" : "")>@Item.GenreTitle</option>
+            }
+        </select>
+        <br />
+        <br />
+        <input id="txtSongID" name="SongID" type="hidden" value="@Model.SongID" />
+        <input id="txtSongIDShow" name="SongIDDisabled" type="number" class="form-control"
+               disabled="disabled" value="@Model.SongID" />
+        <input id="txtSongTitle" name="SongTitle" type="text" class="form-control" required value="@Model.SongTitle" placeholder="Indtast Sang titel" />
+        <br />
+
+        <input id="btnSubmit" type="submit" value="Opdater Sang" />
+    </div>
+</form>
+
+<br />
+@Html.ActionLink("Tilbage til forside", "Index", "Home")

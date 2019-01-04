@@ -1,0 +1,139 @@
+﻿@model Song
+
+@{
+    ViewBag.Title = "SongDetails";
+}
+
+<h2>Song Details</h2>
+
+SongID : @Model.SongID
+<br />
+Song Title : @Model.SongTitle
+<br />
+Genre ID : @Model.GenreID
+<br />
+Genre : @Model.Genre.GenreTitle
+
+<br />
+<br />
+
+<h2>Albums med denne sang</h2>
+
+<table id="SongAlbumListTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Sang ID
+            </th>
+            <th>
+                Sang Navn
+            </th>
+            <th>
+                Album ID
+            </th>
+            <th>
+                Album Navn
+            </th>
+            <th>
+                Artist
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+
+    @{
+        foreach (Song_Album_Relation Item in Model.Song_Album_Relations)
+        {
+            <tr class="Song" data-songid="@Item.SongID">
+                <td>
+                    @Item.SongID
+                </td>
+                <td class="SongTitle" data-confirm="Ønsker du virkelig at slette sangen : @Item.Song.SongTitle ?">
+                    @Item.Song.SongTitle
+                </td>
+                <td>
+                    @Item.AlbumID
+                </td>
+                <td>
+                    @Item.Album.AlbumTitle
+                </td>
+                <td>
+                    @Item.Album.Artist.ArtistName
+                </td>
+                <td>
+                    <input id="hdnDrink" type="hidden" value="@Item.SongID" />
+                    <span class="glyphicon glyphicon-pencil edit-order" style="cursor: pointer"></span>&nbsp;
+                    <span class="glyphicon glyphicon-comment divider" style="cursor: pointer"></span>&nbsp;
+                    <span class="glyphicon glyphicon-remove remove-order" style="cursor: pointer"></span>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+<h2>Playlister med denne sang</h2>
+
+<table id="SongPlaylistListTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Sang ID
+            </th>
+            <th>
+                Sang Navn
+            </th>
+            <th>
+                Playlist ID
+            </th>
+            <th>
+                Playlist Navn
+            </th>
+            <th>
+                Bruger
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+
+    @{
+        foreach (Playlist_Song_Relation Item in Model.Playlist_Song_Relations)
+        {
+            <tr class="Song" data-songid="@Item.SongID">
+                <td>
+                    @Item.SongID
+                </td>
+                <td class="SongTitle" data-confirm="Ønsker du virkelig at slette sangen : @Item.Song.SongTitle ?">
+                    @Item.Song.SongTitle
+                </td>
+                <td>
+                    @Item.PlaylistID
+                </td>
+                <td>
+                    @Item.Playlist.PlayListName
+                </td>
+                <td>
+                    @Item.Playlist.User.userFirstName <span> </span>
+                    @Item.Playlist.User.userLastName
+                </td>
+                <td>
+                    <input id="hdnDrink" type="hidden" value="@Item.SongID" />
+                    <span class="glyphicon glyphicon-pencil edit-order" style="cursor: pointer"></span>&nbsp;
+                    <span class="glyphicon glyphicon-comment divider" style="cursor: pointer"></span>&nbsp;
+                    <span class="glyphicon glyphicon-remove remove-order" style="cursor: pointer"></span>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@Html.ActionLink("Tilbage til forside", "Index", "Home")
+<br />
+<br />
+@Html.ActionLink("Tilbage til Sang Liste", "SongList", "Song")

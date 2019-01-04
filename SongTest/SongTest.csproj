@@ -161,9 +161,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\Playlist_Song_Relation.cs" />
     <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\Song_Album_Relation.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +213,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Song\SongList.cshtml" />
     <Content Include="Views\Song\CreateSong.cshtml" />
+    <Content Include="Views\Song\SongDetails.cshtml" />
+    <Content Include="Views\Song\EditSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

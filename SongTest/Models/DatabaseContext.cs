@@ -23,8 +23,16 @@ namespace SongTest.Models
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         // Her skal vi lægge alle de klasse filer, som skal give en tabel i vores
         // database !!!
-        public virtual DbSet<Song> Songs { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Song> Songs { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Artist> Artists { get; set; }
+
+        public virtual DbSet<Playlist> Playlists { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<Song_Album_Relation> Song_Album_Relations { get; set; }
+        public virtual DbSet<Playlist_Song_Relation> Playlist_Song_Relations { get; set; }
     }
 
     //public class MyEntity
