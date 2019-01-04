@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "CreateSong";
+    List<Album> AlbumsList = ViewBag.AlbumList;
+    List<Playlist> PlayList = ViewBag.PlayList;
 }
 
 <h2>Create Song</h2>
@@ -20,6 +22,27 @@
 
         <input id="txtSongTitle" name="SongTitle" type="text" class="form-control" required title="Husk at sang titel !!!" placeholder="Indtast Sang titel" />
         <br />
+        <br />
+
+        <p>Albums</p>
+        <select name="AlbumID">
+            <option value="0"> </option>
+            @foreach (Album Item in AlbumsList)
+            {
+                <option value="@Item.AlbumID">@Item.AlbumTitle</option>
+            }
+        </select>
+
+        <br />
+        <br />
+        <p>Playlists</p>
+        <select name="PlayListID">
+            <option value="0"> </option>
+            @foreach (Playlist Item in PlayList)
+            {
+                <option value="@Item.PlayListID">@Item.PlayListName</option>
+            }
+        </select>
 
         <input id="btnSubmit" type="submit" value="Gem Sang" />
     </div>

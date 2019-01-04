@@ -25,6 +25,14 @@ namespace SongTest
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ltpe_scripts").Include(
+                "~/Project_Scripts/JavaScript_Paging_Dynamic8.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/ltpe_style").Include(
+                      "~/Project_Stylesheet/stylesheet.css"
+                      ));
         }
     }
 }

@@ -6,7 +6,8 @@
 
 <h2>Song List</h2>
 
-<table id="SonglistTable" class="table table-bordered table-striped">
+<table id="SonglistTable">
+    @*<table id="SonglistTable" class="table table-bordered table-striped">*@
     <thead>
         <tr>
             <th>
@@ -22,13 +23,19 @@
                 Genre Navn
             </th>
             <th>
+                Albums med Sang
+            </th>
+            <th>
+                Playlists med Sang
+            </th>
+            <th>
                 Actions
             </th>
         </tr>
     </thead>
 
     @{
-        foreach (var Item in Model)
+        foreach (Song Item in Model)
         {
             <tr class="Song" data-songid="@Item.SongID">
                 <td>
@@ -42,6 +49,24 @@
                 </td>
                 <td>
                     @Item.Genre.GenreTitle
+                </td>
+                <td>
+                    @{ 
+                        foreach(Playlist_Song_Relation Item1 in Item.Playlist_Song_Relations)
+                        {
+                            @Item1.Playlist.PlayListName
+                            <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (Song_Album_Relation Item2 in Item.Song_Album_Relations)
+                        {
+                            @Item2.Album.AlbumTitle
+                            <br />
+                        }
+                    }
                 </td>
                 <td>
                     <input id="hdnDrink" type="hidden" value="@Item.SongID" />
@@ -61,16 +86,16 @@
             // ---------------------------------------------------------------------------------------
             // Start på Paging
             // ---------------------------------------------------------------------------------------
-            //$(".Song").AddPageComponentsDynamic(
-            //    {
-            //        Number_Of_Paging_Elements_On_Side: 3,
-            //        MaxNumberOfPagerPagesInPagerSlider: 4,
-            //        PagerClassName: "Song",
-            //        PagerStyleTable: true,
-            //        UsePagerElementOnSideSelector: true,
-            //        PagerStyleName: "Current_Highlight",
-            //    }
-            //);
+            $(".Song").AddPageComponentsDynamic(
+                {
+                    Number_Of_Paging_Elements_On_Side: 3,
+                    MaxNumberOfPagerPagesInPagerSlider: 4,
+                    PagerClassName: "Song",
+                    PagerStyleTable: true,
+                    UsePagerElementOnSideSelector: true,
+                    PagerStyleName: "Current_Highlight",
+                }
+            );
             // ---------------------------------------------------------------------------------------
             // Slut på Paging
             // ---------------------------------------------------------------------------------------

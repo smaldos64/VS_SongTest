@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/ltpe_style")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,8 +24,24 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("SongList", "SongList", "Song")</li>
-                    <li>@Html.ActionLink("Create Song", "CreateSong", "Song")</li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Håndter Sange <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Song/SongList">Vis alle Sange</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/Song/CreateSong">Opret Sang</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Håndter Playlister <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Song/SongList">Vis alle Playlister</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/Song/CreateSong">Opret Playliste</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -39,6 +56,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/ltpe_scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
